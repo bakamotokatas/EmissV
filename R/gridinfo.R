@@ -79,7 +79,13 @@ gridInfo <- function(file = file.choose(),z = FALSE,verbose = TRUE){
                              truelat1, " +lat_2=", truelat2, " +lat_0=",
                              cen_lat, " +lon_0=", cen_lon,
                              " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
-     } else {
+     } else if(map_proj == 6){                         # nocov
+    geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,   # nocov
+                          " +lat_0=",cen_lat,       # nocov
+                          " +lon_0=",cen_lon,       # nocov
+                          " +x_0=",0," +y_0=",0,    # nocov
+                          " +ellps=WGS84 +units=m") # nocov
+  } else {
        stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).') # nocov
      }
 
